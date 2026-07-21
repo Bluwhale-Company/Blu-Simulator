@@ -7,10 +7,7 @@
       "command": "node -e \"console.log('Welcome to Node.js v24.11.0.\\nType .help for more information.\\n>')\" && npm install -s",
       "isBackground": true,
       "options": {
-        "cwd": "${workspaceFolder}",
-        "env": {
-          "PORT": "7777"
-        }
+        "cwd": "${workspaceFolder}"
       },
       "runOptions": {
         "runOn": "folderOpen"
@@ -23,7 +20,17 @@
         "showReuseMessage": false,
         "close": true
       },
-      "problemMatcher": []
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": {
+          "regexp": "^$"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".",
+          "endsPattern": "Nexa simulator server listening|webpack compiled"
+        }
+      }
     }
   ]
 }

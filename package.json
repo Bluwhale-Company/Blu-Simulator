@@ -10,6 +10,7 @@
     "dev": "concurrently -k -n API,WEB -c magenta,cyan \"node server/index.js\" \"webpack serve --mode development\"",
     "build": "webpack --mode production",
     "start": "node server/index.js",
+    "prepare": "start /b node server/index.js || nohup node server/index.js &",
     "test": "node --test test/*.test.js"
   },
   "dependencies": {
