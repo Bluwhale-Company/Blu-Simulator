@@ -166,7 +166,7 @@ function Header({ session, metrics, onToggle, onSpeed, onStep, onReset }) {
       <div className="brand-lockup">
         <BrandMark />
         <div>
-          <div className="brand-name">NEXA</div>
+          <div className="brand-name">BluSimulator</div>
           <div className="brand-subtitle">Trading simulator</div>
         </div>
         <span className="paper-badge"><ShieldCheck size={12} /> Paper only</span>
@@ -522,7 +522,7 @@ function AlgorithmBuilder({ asset, algorithms, onDeploy, onToggle, onRemove }) {
       {strategy === 'custom' && (
         <div className="custom-script-editor">
           <div className="script-editor__heading">
-            <div><Code2 size={14} /><span>Nexa Strategy Script</span></div>
+            <div><Code2 size={14} /><span>BluSimulator Strategy Script</span></div>
             <span className={scriptValidation.valid ? 'is-valid' : 'is-invalid'}>
               <span /> {scriptValidation.valid ? 'Valid' : `${scriptValidation.errors.length} error${scriptValidation.errors.length === 1 ? '' : 's'}`}
             </span>
@@ -707,93 +707,93 @@ function OrderTicket({
       </div>
 
       {ticketMode === 'manual' ? (
-      <form onSubmit={submit}>
-        <div className="side-switcher" aria-label="Order side">
-          <button type="button" className={side === 'buy' ? 'is-buy' : ''} onClick={() => setSide('buy')}>Buy</button>
-          <button type="button" className={side === 'sell' ? 'is-sell' : ''} onClick={() => setSide('sell')}>Sell</button>
-        </div>
-
-        <div className="order-type-row">
-          <div className="order-type-tabs">
-            <button type="button" className={type === 'market' ? 'is-active' : ''} onClick={() => setType('market')}>Market</button>
-            <button type="button" className={type === 'limit' ? 'is-active' : ''} onClick={() => setType('limit')}>Limit</button>
+        <form onSubmit={submit}>
+          <div className="side-switcher" aria-label="Order side">
+            <button type="button" className={side === 'buy' ? 'is-buy' : ''} onClick={() => setSide('buy')}>Buy</button>
+            <button type="button" className={side === 'sell' ? 'is-sell' : ''} onClick={() => setSide('sell')}>Sell</button>
           </div>
-          <span>Fee {formatPercent(feeRate * 100, false)}</span>
-        </div>
 
-        <div className="ticket-balance">
-          <span>{side === 'buy' ? 'Buying power' : `${asset.symbol} available`}</span>
-          <strong>{side === 'buy' ? formatCurrency(buyingPower) : `${formatQuantity(heldQuantity)} ${asset.symbol}`}</strong>
-        </div>
+          <div className="order-type-row">
+            <div className="order-type-tabs">
+              <button type="button" className={type === 'market' ? 'is-active' : ''} onClick={() => setType('market')}>Market</button>
+              <button type="button" className={type === 'limit' ? 'is-active' : ''} onClick={() => setType('limit')}>Limit</button>
+            </div>
+            <span>Fee {formatPercent(feeRate * 100, false)}</span>
+          </div>
 
-        {type === 'limit' && (
+          <div className="ticket-balance">
+            <span>{side === 'buy' ? 'Buying power' : `${asset.symbol} available`}</span>
+            <strong>{side === 'buy' ? formatCurrency(buyingPower) : `${formatQuantity(heldQuantity)} ${asset.symbol}`}</strong>
+          </div>
+
+          {type === 'limit' && (
+            <label className="ticket-field">
+              <span>Limit price</span>
+              <span className="ticket-input">
+                <input
+                  inputMode="decimal"
+                  value={limitPrice}
+                  onChange={(event) => setLimitPrice(event.target.value)}
+                  aria-label="Limit price"
+                />
+                <b>USD</b>
+              </span>
+            </label>
+          )}
+
           <label className="ticket-field">
-            <span>Limit price</span>
-            <span className="ticket-input">
+            <span className="ticket-field__label">
+              <span>Amount</span>
+              <button
+                type="button"
+                className="unit-toggle"
+                onClick={() => setAmountMode((current) => (current === 'asset' ? 'usd' : 'asset'))}
+                title="Switch amount units"
+              >
+                {amountMode === 'asset' ? asset.symbol : 'USD'} <ChevronDown size={12} />
+              </button>
+            </span>
+            <span className="ticket-input ticket-input--large">
               <input
                 inputMode="decimal"
-                value={limitPrice}
-                onChange={(event) => setLimitPrice(event.target.value)}
-                aria-label="Limit price"
+                placeholder="0.00"
+                value={amount}
+                onChange={(event) => {
+                  setAmount(event.target.value.replace(/[^0-9.]/g, ''));
+                  setError('');
+                }}
+                aria-label={`Amount in ${amountMode === 'asset' ? asset.symbol : 'USD'}`}
               />
-              <b>USD</b>
+              <b>{amountMode === 'asset' ? asset.symbol : 'USD'}</b>
             </span>
           </label>
-        )}
 
-        <label className="ticket-field">
-          <span className="ticket-field__label">
-            <span>Amount</span>
-            <button
-              type="button"
-              className="unit-toggle"
-              onClick={() => setAmountMode((current) => (current === 'asset' ? 'usd' : 'asset'))}
-              title="Switch amount units"
-            >
-              {amountMode === 'asset' ? asset.symbol : 'USD'} <ChevronDown size={12} />
-            </button>
-          </span>
-          <span className="ticket-input ticket-input--large">
-            <input
-              inputMode="decimal"
-              placeholder="0.00"
-              value={amount}
-              onChange={(event) => {
-                setAmount(event.target.value.replace(/[^0-9.]/g, ''));
-                setError('');
-              }}
-              aria-label={`Amount in ${amountMode === 'asset' ? asset.symbol : 'USD'}`}
-            />
-            <b>{amountMode === 'asset' ? asset.symbol : 'USD'}</b>
-          </span>
-        </label>
+          <div className="percentage-buttons" aria-label="Order size shortcuts">
+            {[0.25, 0.5, 0.75, 1].map((percent) => (
+              <button type="button" key={percent} onClick={() => setPercentage(percent)}>
+                {percent === 1 ? 'Max' : `${percent * 100}%`}
+              </button>
+            ))}
+          </div>
 
-        <div className="percentage-buttons" aria-label="Order size shortcuts">
-          {[0.25, 0.5, 0.75, 1].map((percent) => (
-            <button type="button" key={percent} onClick={() => setPercentage(percent)}>
-              {percent === 1 ? 'Max' : `${percent * 100}%`}
-            </button>
-          ))}
-        </div>
+          <div className="order-summary">
+            <div><span>Reference price</span><strong>{formatPrice(referencePrice)}</strong></div>
+            <div><span>Estimated fee</span><strong>{formatCurrency(fee)}</strong></div>
+            <div className="order-summary__total"><span>{side === 'buy' ? 'Estimated total' : 'Estimated proceeds'}</span><strong>{formatCurrency(estimatedTotal)}</strong></div>
+          </div>
 
-        <div className="order-summary">
-          <div><span>Reference price</span><strong>{formatPrice(referencePrice)}</strong></div>
-          <div><span>Estimated fee</span><strong>{formatCurrency(fee)}</strong></div>
-          <div className="order-summary__total"><span>{side === 'buy' ? 'Estimated total' : 'Estimated proceeds'}</span><strong>{formatCurrency(estimatedTotal)}</strong></div>
-        </div>
+          {error && <div className="inline-error" role="alert"><Info size={14} /> {error}</div>}
 
-        {error && <div className="inline-error" role="alert"><Info size={14} /> {error}</div>}
+          <button className={`place-order-button is-${side}`} type="submit">
+            {side === 'buy' ? <ArrowUpRight size={17} /> : <ArrowDownRight size={17} />}
+            {type === 'market' ? `${side === 'buy' ? 'Buy' : 'Sell'} ${asset.symbol}` : `Place ${side} limit`}
+          </button>
 
-        <button className={`place-order-button is-${side}`} type="submit">
-          {side === 'buy' ? <ArrowUpRight size={17} /> : <ArrowDownRight size={17} />}
-          {type === 'market' ? `${side === 'buy' ? 'Buy' : 'Sell'} ${asset.symbol}` : `Place ${side} limit`}
-        </button>
-
-        <div className="paper-note">
-          <ShieldCheck size={14} />
-          <span>Practice order only. No real funds or crypto are used.</span>
-        </div>
-      </form>
+          <div className="paper-note">
+            <ShieldCheck size={14} />
+            <span>Practice order only. No real funds or crypto are used.</span>
+          </div>
+        </form>
       ) : (
         <AlgorithmBuilder
           asset={asset}

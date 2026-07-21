@@ -4,11 +4,11 @@ const config = require('./config/environment');
 const app = createApp();
 
 const server = app.listen(config.port, () => {
-  console.log(`Nexa simulator server listening on http://localhost:${config.port}`);
+  console.log(`BluSimulator server listening on http://localhost:${config.port}`);
 });
 
 function shutdown(signal) {
-  console.log(`${signal} received; closing Nexa server.`);
+  console.log(`${signal} received; closing BluSimulator server.`);
   server.close(() => process.exit(0));
 }
 

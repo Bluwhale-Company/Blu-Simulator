@@ -1,4 +1,4 @@
-# Nexa Paper Trading
+# BluSimulator
 
 A polished crypto paper-trading simulator built with React, Webpack, and Node.js. Fresh sessions use public Coinbase spot prices as their starting point and then follow a deterministic synthetic path. No wallet, exchange account, API key, or real funds are involved.
 
@@ -30,7 +30,7 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-The Node API requests `https://api.coinbase.com/v2/prices/:currency_pair/spot` for each supported asset. Results are validated and cached for 60 seconds. If Coinbase is slow or unavailable, Nexa starts from its built-in fallback quotes instead.
+The Node API requests `https://api.coinbase.com/v2/prices/:currency_pair/spot` for each supported asset. Results are validated and cached for 60 seconds. If Coinbase is slow or unavailable, BluSimulator starts from its built-in fallback quotes instead.
 
 On corporate networks that install a private root certificate, recent Node versions can use the operating system certificate store:
 
