@@ -60,6 +60,21 @@ server/
   middleware/              # request IDs, 404s, and errors
   routes/                  # API route composition
   services/                # Coinbase integration and bootstrap policy
+
+src/
+  App.jsx
+  index.jsx
+  components/
+  hooks/
+  lib/
+  styles.css
+
+test/
+  algorithmic-trading.test.js
+  coinbase-price-service.test.js
+  market-bootstrap-service.test.js
+  server-api.test.js
+  simulation.test.js
 ```
 
 The external price provider is isolated behind `CoinbasePriceService`; `MarketBootstrapService` applies caching results and per-asset fallbacks before data reaches the client.
