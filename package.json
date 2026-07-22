@@ -18,6 +18,7 @@
     "bcryptjs": "^3.0.3",
     "dotenv": "^17.4.2",
     "express": "^4.21.2",
+    "express-mongo-limit": "^1.0.4",
     "express-validator": "^7.3.2",
     "jsonwebtoken": "^9.0.3",
     "lucide-react": "^0.468.0",
@@ -36,6 +37,6 @@
     "style-loader": "^4.0.0",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.0"
+    "webpack-dev-server": "^6.0.0"
   }
 }

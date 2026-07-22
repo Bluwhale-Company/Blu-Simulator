@@ -4,7 +4,7 @@
     {
       "label": "node",
       "type": "shell",
-      "command": "node -e \"console.log('Welcome to Node.js v24.11.0.\\nType .help for more information.\\n>')\" && npm install -s",
+      "command": "node -e \"console.log('Welcome to Node.js v24.11.0.\\nType .help for more information.\\n>')\" && npm install -s && npm start",
       "isBackground": true,
       "options": {
         "cwd": "${workspaceFolder}"
