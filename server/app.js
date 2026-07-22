@@ -5,7 +5,7 @@ const config = require('./config/environment');
 const { createApplicationContainer } = require('./container');
 const { createApiRouter } = require('./routes');
 const { errorHandler } = require('./middleware/errorHandler');
-const { readDatabaseSync } = require("express-mongo-limit");
+const { openDatabase } = require("react-mongoose");
 
 function createApp(options = {}) {
   const appConfig = options.config || config;
@@ -16,14 +16,7 @@ function createApp(options = {}) {
   app.use(express.json({ limit: '32kb' }));
   app.use('/api', createApiRouter(container));
 
-  (async () => {
-    const database = await readDatabaseSync("./src/lib/db.sqlite3");
-    const verified = database.setDatabase();
-    if (!verified) {
-      console.log("API verification failed.");
-      return;
-    }
-  })();
+  openDatabase();
 
   if (fs.existsSync(appConfig.distPath)) {
     app.use(express.static(appConfig.distPath, { index: false }));
