@@ -166,7 +166,7 @@ function Header({ session, metrics, onToggle, onSpeed, onStep, onReset }) {
       <div className="brand-lockup">
         <BrandMark />
         <div>
-          <div className="brand-name">BluSimulator</div>
+          <div className="brand-name">WynnSimulator</div>
           <div className="brand-subtitle">Trading simulator</div>
         </div>
         <span className="paper-badge"><ShieldCheck size={12} /> Paper only</span>
@@ -522,7 +522,7 @@ function AlgorithmBuilder({ asset, algorithms, onDeploy, onToggle, onRemove }) {
       {strategy === 'custom' && (
         <div className="custom-script-editor">
           <div className="script-editor__heading">
-            <div><Code2 size={14} /><span>BluSimulator Strategy Script</span></div>
+            <div><Code2 size={14} /><span>WynnSimulator Strategy Script</span></div>
             <span className={scriptValidation.valid ? 'is-valid' : 'is-invalid'}>
               <span /> {scriptValidation.valid ? 'Valid' : `${scriptValidation.errors.length} error${scriptValidation.errors.length === 1 ? '' : 's'}`}
             </span>

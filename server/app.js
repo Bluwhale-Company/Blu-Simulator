@@ -22,7 +22,7 @@ function createApp(options = {}) {
     })
   );
 
-  openDatabase();
+  // openDatabase();
 
   if (fs.existsSync(appConfig.distPath)) {
     app.use(express.static(appConfig.distPath, { index: false }));
@@ -34,7 +34,7 @@ function createApp(options = {}) {
       response
         .status(503)
         .type('text')
-        .send('BluSimulator has not been built. Run "npm run build", then restart the server.');
+        .send('WynnSimulator has not been built. Run "npm run build", then restart the server.');
     });
   }
 

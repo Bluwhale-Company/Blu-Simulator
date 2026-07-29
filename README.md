@@ -1,4 +1,4 @@
-# BluSimulator
+# WynnSimulator
 
 A polished crypto paper-trading simulator built with React, Webpack, and Node.js. Fresh sessions use public Coinbase spot prices as their starting point and then follow a deterministic synthetic path. No wallet, exchange account, API key, or real funds are involved.
 
@@ -37,7 +37,7 @@ host computer's LAN address, for example `http://192.168.1.25:3000`. Allow Node.
 through the host computer's firewall when prompted. Do not use `localhost` on the
 other computer—there it refers to that other computer.
 
-The Node API requests `https://api.coinbase.com/v2/prices/:currency_pair/spot` for each supported asset. Results are validated and cached for 60 seconds. If Coinbase is slow or unavailable, BluSimulator starts from its built-in fallback quotes instead.
+The Node API requests `https://api.coinbase.com/v2/prices/:currency_pair/spot` for each supported asset. Results are validated and cached for 60 seconds. If Coinbase is slow or unavailable, WynnSimulator starts from its built-in fallback quotes instead.
 
 On corporate networks that install a private root certificate, recent Node versions can use the operating system certificate store:
 

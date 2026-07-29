@@ -38,7 +38,7 @@ class MarketBootstrapService {
 
   buildResponse({ prices, unavailable, source, fetchedAt, cached }) {
     return {
-      market: 'BLU-SIM',
+      market: 'WYNN-SIM',
       currency: this.quoteCurrency,
       source,
       provider: source === 'fallback' ? null : 'Coinbase Spot',

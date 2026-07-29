@@ -5,13 +5,13 @@ const app = createApp();
 
 const server = app.listen(config.port, config.host, () => {
   console.log(
-    `BluSimulator server listening on http://localhost:${config.port} ` +
+    `WynnSimulator server listening on http://localhost:${config.port} ` +
       `(network interface ${config.host})`
   );
 });
 
 function shutdown(signal) {
-  console.log(`${signal} received; closing BluSimulator server.`);
+  console.log(`${signal} received; closing WynnSimulator server.`);
   server.close(() => process.exit(0));
 }
 
