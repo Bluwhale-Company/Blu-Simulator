@@ -23,12 +23,19 @@ The portfolio header visualizes total equity as available cash, invested value, 
 
 ## Run locally
 
+Install Node.js 22.15 or newer, then run:
+
 ```bash
 npm install
 npm run dev
 ```
 
 Open `http://localhost:3000`.
+
+To open the development site from another computer on the same network, use the
+host computer's LAN address, for example `http://192.168.1.25:3000`. Allow Node.js
+through the host computer's firewall when prompted. Do not use `localhost` on the
+other computer—there it refers to that other computer.
 
 The Node API requests `https://api.coinbase.com/v2/prices/:currency_pair/spot` for each supported asset. Results are validated and cached for 60 seconds. If Coinbase is slow or unavailable, BluSimulator starts from its built-in fallback quotes instead.
 
@@ -42,11 +49,12 @@ npm.cmd run dev
 ## Production
 
 ```bash
-npm run build
 npm start
 ```
 
-The production server runs at `http://localhost:3001` by default.
+`npm start` builds the web app first, then runs the production server at
+`http://localhost:3001` by default. From another computer on the same network,
+use the host computer's LAN address with port `3001`.
 
 ## Server architecture
 
@@ -83,7 +91,12 @@ Optional environment variables:
 
 | Variable | Default | Purpose |
 | --- | --- | --- |
+| `SERVER_HOST` | `0.0.0.0` | Interface used by the production server |
 | `PORT` | `3001` | Node server port |
+| `DEV_HOST` | `0.0.0.0` | Interface used by the development web server |
+| `DEV_PORT` | `3000` | Development web-server port |
+| `API_PORT` | `PORT` or `3001` | API port used by the development proxy |
+| `API_ORIGIN` | `http://127.0.0.1:<API_PORT>` | Full development proxy target |
 | `COINBASE_API_URL` | `https://api.coinbase.com` | Coinbase API base URL |
 | `COINBASE_TIMEOUT_MS` | `4500` | Per-request timeout |
 | `COINBASE_CACHE_TTL_MS` | `60000` | Server-side price cache lifetime |

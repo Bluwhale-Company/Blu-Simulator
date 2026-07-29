@@ -7,6 +7,7 @@ function positiveInteger(value, fallback) {
 
 const config = Object.freeze({
   environment: process.env.NODE_ENV || 'development',
+  host: process.env.SERVER_HOST || '0.0.0.0',
   port: positiveInteger(process.env.PORT, 3001),
   distPath: path.resolve(__dirname, '..', '..', 'dist'),
   coinbase: Object.freeze({

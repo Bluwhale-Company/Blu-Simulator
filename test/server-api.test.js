@@ -58,3 +58,16 @@ test('unknown API routes return structured JSON instead of the React document', 
   assert.equal(body.error, 'API route not found.');
   assert.equal(typeof body.requestId, 'string');
 });
+
+test('the server explains when the production web bundle has not been built', async (context) => {
+  const { server } = startTestServer();
+  context.after(() => new Promise((resolve) => server.close(resolve)));
+  await new Promise((resolve) => server.once('listening', resolve));
+  const { port } = server.address();
+
+  const response = await fetch(`http://127.0.0.1:${port}/`);
+  const body = await response.text();
+
+  assert.equal(response.status, 503);
+  assert.match(body, /npm run build/);
+});

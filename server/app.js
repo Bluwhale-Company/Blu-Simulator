@@ -29,6 +29,13 @@ function createApp(options = {}) {
     app.get('*', (_request, response) => {
       response.sendFile(path.join(appConfig.distPath, 'index.html'));
     });
+  } else {
+    app.get('/', (_request, response) => {
+      response
+        .status(503)
+        .type('text')
+        .send('BluSimulator has not been built. Run "npm run build", then restart the server.');
+    });
   }
 
   app.use(errorHandler);

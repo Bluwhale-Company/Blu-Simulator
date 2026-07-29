@@ -3,8 +3,11 @@ const config = require('./config/environment');
 
 const app = createApp();
 
-const server = app.listen(config.port, () => {
-  console.log(`BluSimulator server listening on http://localhost:${config.port}`);
+const server = app.listen(config.port, config.host, () => {
+  console.log(
+    `BluSimulator server listening on http://localhost:${config.port} ` +
+      `(network interface ${config.host})`
+  );
 });
 
 function shutdown(signal) {
