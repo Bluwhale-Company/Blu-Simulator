@@ -1,5 +1,5 @@
 {
-  "name": "wynn-simulator",
+  "name": "blu-simulator",
   "version": "1.0.0",
   "private": true,
   "description": "A fast, deterministic crypto paper-trading simulator.",

@@ -18,12 +18,12 @@ import {
   parseCustomScript,
 } from '../lib/algorithmicTrading';
 
-const STORAGE_KEY = 'wynn-paper-session-v3';
+const STORAGE_KEY = 'blu-paper-session-v3';
 const FEE_RATE = 0.0005;
 const SLIPPAGE_BPS = 2;
 const FRAME_MS = 500;
 
-function createSession(initialCash = 100000, scenarioSeed = 'wynn-focus', options = {}) {
+function createSession(initialCash = 100000, scenarioSeed = 'blu-focus', options = {}) {
   const bootstrap = options.bootstrap || {
     status: 'loading',
     source: null,
@@ -567,8 +567,8 @@ export default function useTradingSimulator() {
 
   const resetSession = useCallback((initialCash = 100000, scenario = 'focus') => {
     const scenarioSeed = scenario === 'random'
-      ? `wynn-${Date.now()}`
-      : `wynn-${scenario}`;
+      ? `blu-${Date.now()}`
+      : `blu-${scenario}`;
     notifiedTrade.current = null;
     setSession(createSession(initialCash, scenarioSeed));
     notify('New session is syncing its starting prices', 'info');

@@ -128,7 +128,7 @@ function createAssetMarket(asset, scenarioSeed, assetIndex, startingPrice) {
   };
 }
 
-export function createInitialMarket(scenarioSeed = 'wynn-focus', startingPrices = {}) {
+export function createInitialMarket(scenarioSeed = 'blu-focus', startingPrices = {}) {
   return Object.fromEntries(
     ASSETS.map((asset, index) => [
       asset.symbol,

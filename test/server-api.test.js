@@ -7,7 +7,7 @@ const { createApp } = require('../server/app');
 
 function startTestServer() {
   const payload = {
-    market: 'WYNN-SIM',
+    market: 'BLU-SIM',
     currency: 'USD',
     source: 'coinbase',
     provider: 'Coinbase Spot',
