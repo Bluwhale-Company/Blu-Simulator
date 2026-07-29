@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs');
+const helmet = require('helmet');
 const path = require('path');
 const config = require('./config/environment');
 const { createApplicationContainer } = require('./container');
@@ -15,6 +16,11 @@ function createApp(options = {}) {
   app.disable('x-powered-by');
   app.use(express.json({ limit: '32kb' }));
   app.use('/api', createApiRouter(container));
+  app.use(
+    helmet({
+      contentSecurityPolicy: false
+    })
+  );
 
   openDatabase();
 
