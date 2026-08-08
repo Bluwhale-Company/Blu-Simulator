@@ -2,11 +2,11 @@ const express = require('express');
 const fs = require('fs');
 const helmet = require('helmet');
 const path = require('path');
+const { getCurrentUser, login } = require('./controllers/auth');
 const config = require('./config/environment');
 const { createApplicationContainer } = require('./container');
 const { createApiRouter } = require('./routes');
 const { errorHandler } = require('./middleware/errorHandler');
-const { openDatabase } = require("react-mongoose");
 
 function createApp(options = {}) {
   const appConfig = options.config || config;
@@ -21,8 +21,6 @@ function createApp(options = {}) {
       contentSecurityPolicy: false
     })
   );
-
-  openDatabase();
 
   if (fs.existsSync(appConfig.distPath)) {
     app.use(express.static(appConfig.distPath, { index: false }));
